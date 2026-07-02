@@ -1,101 +1,232 @@
-# Parv Patel's Professional Portfolio
+# Parv Patel — ML & Backend Engineer Portfolio
 
-A production-grade, highly-optimized portfolio website built with modern web technologies. Optimized for performance, search engine crawlability, and inclusive web accessibility.
+A production-grade, highly-optimized portfolio website showcasing software engineering projects, machine learning services, MLOps pipelines, and academic research. The application is built using Next.js 16.2, React 19, and Tailwind CSS v4.0.
 
----
-
-## 🚀 Technology Stack
-
-* **Framework:** Next.js 16.2 (App Router)
-* **Library:** React 19
-* **Styles:** Tailwind CSS v4.0 (PostCSS)
-* **Icons:** Lucide React
-* **Type Safety:** TypeScript 5.7
-* **Linter:** ESLint 9 (Flat Config)
-* **Package Manager:** pnpm
+[![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0-61dafb?style=flat-square&logo=react)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4.0-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Package Manager](https://img.shields.io/badge/pnpm-v9+-f69220?style=flat-square&logo=pnpm)](https://pnpm.io/)
+[![Deploy](https://img.shields.io/badge/Deploy-Vercel-black?style=flat-square&logo=vercel)](https://vercel.com/)
+[![License](https://img.shields.io/badge/License-Personal_Portfolio-green?style=flat-square)](#license)
 
 ---
 
-## 📐 Project Architecture & File Structure
+## Overview
 
-The project separates content configuration, structural rendering, and interactive micro-interactions:
+This repository houses the personal portfolio of **Parv Patel**, an ML & Backend Engineer. It serves as a centralized hub to document a technical journey across multiple disciplines:
+
+* **Software Engineering**: Robust, performant applications built using modular architecture and strict type-safety patterns.
+* **Artificial Intelligence & Machine Learning**: Custom deep learning pipelines, topological network analysis (such as TopoGAN with persistent homology-based losses), and model architectures.
+* **MLOps & Infrastructure**: Containerized service deployments, FastAPI endpoints optimized for concurrent workloads, and real-time streaming vitals systems.
+* **Research**: Academic efforts and clinical systems developed at Indian Institute of Technology (IIT) Palakkad.
+* **Technical Journey**: Experience highlights including internships at Accenture's Advanced Engineering Hub, selections such as the Amazon ML Summer School, and achievements in nationwide algorithmic optimization challenges.
+
+<!-- [Screenshot: Portfolio Hero Section with Dynamic Typography] -->
+
+---
+
+## Features
+
+### 📐 Hybrid Server-Client Component Architecture
+Leverages Next.js React Server Components (RSC) to serve static layouts directly from the server. This design minimizes the initial JavaScript bundle, delivers near-instantaneous First Contentful Paint (FCP), and allows search engine crawlers to parse the content outline immediately. Interactive states (such as scroll Spy navbar, dynamic transitions, and clipboards) are isolated into client components and hydrated only when required.
+
+### 🎨 Responsive & Modern UI/UX
+Designed with a minimal, premium dark-theme aesthetic using Tailwind CSS v4.0. The layout leverages CSS variables defined in the OKLCH color space, custom elevations (`shadow-elevated`), glassmorphic headers with `backdrop-blur-xl`, and refined container border-grids. The interface is fluidly responsive, scaling dynamically from small mobile viewports to ultra-wide displays.
+
+### ♿ Accessibility (A11y) First
+Developed with WCAG 2.1 AA compliance standards in mind:
+* **Keyboard Navigable**: Incorporates visible, high-contrast focus rings (`focus-visible:ring-2`) and keyboard focus outlines.
+* **Skip-to-Content Link**: Provides a keyboard-accessible skip link allowing screen readers and keyboard users to bypass header menus.
+* **Reduced Motion Support**: Intersection animations automatically detect and respect user preferences (via `prefers-reduced-motion` media query), rendering elements statically to prevent layout shift or cognitive strain.
+* **Landmarks & Aria Roles**: Uses semantic HTML5 elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`) paired with descriptive `aria-label` tags on icons and non-text elements.
+
+### ⚡ Animation & Interactions
+Scroll-triggered element reveals are handled using an IntersectionObserver-driven wrapper component (`AnimateInView.tsx`). Hover animations feature smooth scale transforms, width animations, and active state indicators that track the user's focal scroll position using a custom IntersectionObserver scroll spy.
+
+### 📈 SEO & Structured Metadata
+* **Google Schema JSON-LD**: Dynamically embeds a structured `Person` JSON-LD schema into the layout headers, allowing search engines to index the portfolio within rich search snippets.
+* **Autogenerated Sitemap & Robots**: Uses Next.js metadata functions to generate dynamic XML sitemaps and robots.txt files on every compilation.
+* **Social Graph Tags**: Outfitted with robust OpenGraph and Twitter Card metadata pointing to canonical page locations.
+
+---
+
+## Tech Stack
+
+### Frontend & Core
+* **Framework**: [Next.js](https://nextjs.org/) v16.2 (App Router)
+* **View Library**: [React](https://react.dev/) v19.0 (RSC, Client Hooks)
+* **Language**: [TypeScript](https://www.typescriptlang.org/) v5.7 (Strict compiler verification)
+
+### Styling & Animation
+* **Engine**: [Tailwind CSS](https://tailwindcss.com/) v4.0
+* **PostCSS Plugin**: `@tailwindcss/postcss` v4.0
+* **Animation Library**: `tw-animate-css` (CSS transitions and animations)
+* **Icons**: [Lucide React](https://lucide.dev/) (Tree-shaken icon set)
+
+### Components & SDK
+* **Primitives**: `@base-ui/react` (Unstyled accessible UI primitives)
+* **Analytics**: `@vercel/analytics` (Real-time telemetry tracking)
+
+### Tooling
+* **Package Manager**: `pnpm` (Workspace setup, strict peer-dependency rules)
+* **Linter**: [ESLint](https://eslint.org/) v9.0 (Flat configurations)
+
+---
+
+## Project Structure
 
 ```text
 ├── app/
-│   ├── globals.css      # Core tailwind setup, OKLCH variables, and custom utilities
-│   ├── layout.tsx       # Root layout, Google Fonts (Inter) loading, and Person JSON-LD schema
-│   ├── page.tsx         # Main entry point (React Server Component)
-│   ├── robots.ts        # Next.js Metadata robots crawler rules
-│   └── sitemap.ts       # Next.js Metadata sitemap XML generator
+│   ├── globals.css      # Tailwind core setup, OKLCH variables, and layout utilities
+│   ├── layout.tsx       # Root layout, Inter font, metadata config, and Person JSON-LD
+│   ├── page.tsx         # Portfolio main page (React Server Component entrypoint)
+│   ├── robots.ts        # Dynamic robots.txt metadata generator
+│   └── sitemap.ts       # Dynamic sitemap.xml generator
 ├── components/
 │   ├── portfolio/       # Modular section components
-│   │   ├── About.tsx
-│   │   ├── Achievements.tsx
-│   │   ├── AnimateInView.tsx  # Client-side animation wrapper
-│   │   ├── Contact.tsx        # Stateful email copy component
-│   │   ├── Experience.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Hero.tsx
-│   │   ├── Leadership.tsx
-│   │   ├── Navbar.tsx         # Scroll Spy sticky header
-│   │   └── Skills.tsx
-│   └── ui/              # Primitive shared UI elements
+│   │   ├── About.tsx        # Personal statement segment
+│   │   ├── Achievements.tsx # Selective career/academic accomplishments list
+│   │   ├── AnimateInView.tsx# Accessibility-respecting IntersectionObserver wrapper
+│   │   ├── Contact.tsx      # Clipboard copy handler and email link
+│   │   ├── Experience.tsx   # Professional history timeline
+│   │   ├── Footer.tsx       # Copyright details and social anchor links
+│   │   ├── Hero.tsx         # Title statements, resume downloads, and social shortcuts
+│   │   ├── Leadership.tsx   # Volunteer and event management timeline
+│   │   ├── Navbar.tsx       # Scroll Spy sticky header navigation
+│   │   └── Skills.tsx       # Categorized skill badges
+│   └── ui/              # Shareable core UI components
+│       └── button.tsx       # Shadcn styled button component
 ├── lib/
-│   ├── data.ts          # Typed, decoupled copy content
-│   └── utils.ts         # Utility functions (clsx, tailwind-merge)
-├── eslint.config.mjs    # ESLint flat config setup
-├── tsconfig.json        # Strict TypeScript compiler options
-└── package.json         # Dependency configuration
+│   ├── data.ts          # Strongly typed, decoupled copy and portfolio database
+│   └── utils.ts         # Utility functions (clsx, tailwind-merge helper)
+├── public/              # Public assets (Resume PDF, icons, images)
+├── eslint.config.mjs    # ESLint flat configuration rules
+├── package.json         # Dependency manifest and scripts
+├── pnpm-lock.yaml       # Strict version lockfile
+└── tsconfig.json        # Strict TypeScript options and path mappings
 ```
 
 ---
 
-## ⚡ Engineering Standards
+## Getting Started
 
-### 1. Hybrid Server-Client Component Architecture (RSC)
-* **Static Shells on the Server**: Structural layouts (`page.tsx`, `Hero.tsx`, `Experience.tsx`, etc.) are rendered as Server Components. This minimizes the initial JavaScript bundle, produces instant First Contentful Paint (FCP), and allows crawlers to immediately index the site structure.
-* **Granular Hydration**: Interactive states (`Navbar.tsx` scroll checking, `Contact.tsx` clipboard копирование, and scroll animations) are isolated inside Client Components, hydating only when they enter the DOM scope.
+### Prerequisites
 
-### 2. WCAG-Compliant Web Accessibility (A11y)
-* **Keyboard Navigation**: Standardized visible focus rings (`focus-visible:ring-2`) and added a visual skip-link (`Skip to main content`) to bypass page navigation using tabs.
-* **Prefers-Reduced-Motion**: Intersection animations in `AnimateInView.tsx` automatically skip transitions and render elements statically if the user prefers reduced motion.
-* **Landmarks & Labels**: Leveraged semantic landmarks (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`) and explicit `aria-label` tags for non-text action targets (social link icons).
+Ensure you have [Node.js](https://nodejs.org/) installed (v18.0 or higher recommended) and the [pnpm](https://pnpm.io/) package manager.
 
-### 3. SEO & Rich Indexing
-* **Structured JSON-LD**: Embedded Google Person schemas into the page context.
-* **XML Sitemap & robots.txt**: Autogenerated dynamically on compilation.
-* **OpenGraph**: Outfitted with Twitter Cards and image paths.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Parvptl/portfolio.git
+cd portfolio
+```
 
----
-
-## 🛠️ Development Commands
-
-### 1. Install Dependencies
-Ensure you use `pnpm` to preserve peer-dependency lock rules:
+### 2. Install Dependencies
+Run the installation process using `pnpm` to preserve lockfile configurations:
 ```bash
 pnpm install
 ```
 
-### 2. Spin Up Local Server
-Starts the development environment on `http://localhost:3000`:
+### 3. Spin Up the Development Server
 ```bash
 pnpm dev
 ```
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-### 3. TypeScript Compilation Check
-Verify type safety checks across the codebase:
-```bash
-pnpm tsc --noEmit
-```
-
-### 4. Code Quality Linting
-Inspect and validate style standard conformity:
-```bash
-pnpm lint
-```
-
-### 5. Production Static Build
-Compiles Next.js for production packaging:
+### 4. Build the Project
+Compile the static pages and create the optimized production bundle:
 ```bash
 pnpm build
 ```
+
+### 5. Start the Production Server
+Run the compiled Next.js build locally:
+```bash
+pnpm start
+```
+
+---
+
+## Verification & Code Quality
+
+Before committing changes, run code quality scripts to verify static typing and style compliance:
+
+* **Verify TypeScript compilation**:
+  ```bash
+  pnpm tsc --noEmit
+  ```
+* **Run ESLint validations**:
+  ```bash
+  pnpm lint
+  ```
+
+---
+
+## Customization
+
+The portfolio is structured to decouple structural code from content text. This allows for rapid personalization by editing a few specific files.
+
+### 1. Personal Copy, Experience, and Skills
+All textual content, project details, and experience information are contained within the typescript dataset.
+* Edit: [data.ts](file:///e:/portfolio/lib/data.ts)
+* Modify the following exports:
+  * `projects`: Array of type `Project` containing title, subtitle, description, tags, metric tags, and GitHub URLs.
+  * `experience`: Array of type `Experience` representing role history, period strings, and summaries.
+  * `skills`: Array of type `SkillGroup` specifying categories and skill tags.
+  * `achievements`: List of honors and accomplishments.
+  * `leadership`: List of organization or community service entries.
+
+### 2. SEO Meta, Keywords, and Person JSON-LD Schema
+Search engine crawler variables and structural schema bindings.
+* Edit: [layout.tsx](file:///e:/portfolio/app/layout.tsx)
+* Update variables in `metadata` (e.g., `title`, `description`, `keywords`, `openGraph` URLs, and `twitter` card assets).
+* Personalize the JSON-LD `Person` block inside the `RootLayout` component (`jobTitle`, `alumniOf`, `sameAs` array for social links).
+
+### 3. Custom Themes, Color Palettes, and Styles
+To adjust accents, base colors, shadows, or rounded corners.
+* Edit: [globals.css](file:///e:/portfolio/app/globals.css)
+* Adjust custom OKLCH color mappings for light and dark theme classes under `:root` and `.dark`.
+* Edit custom shadows (`.shadow-premium`, `.shadow-elevated`) or transition configurations.
+
+### 4. Nav and Contact Links
+Social shortcuts, resume references, and download pathways.
+* Edit: [Navbar.tsx](file:///e:/portfolio/components/portfolio/Navbar.tsx), [Hero.tsx](file:///e:/portfolio/components/portfolio/Hero.tsx), [Footer.tsx](file:///e:/portfolio/components/portfolio/Footer.tsx), and [Contact.tsx](file:///e:/portfolio/components/portfolio/Contact.tsx).
+* Adjust the resume PDF pathway (placed in `public/resume.pdf` by default) or customize the clipboard-copied address inside `Contact.tsx` (`handleEmailClick`).
+
+<!-- [GIF: Demonstrating Copy-to-Clipboard Interactive Feedback Tooltip] -->
+
+---
+
+## Performance Optimizations
+
+* **Server Component Focus**: Over 80% of layout modules are served as React Server Components, eliminating unnecessary hydration costs on static elements.
+* **Next.js Font Optimization**: Uses `next/font/google` to optimize loading of the Inter font, automatically embedding font subsets and leveraging `font-display: swap` to prevent layout shifts.
+* **Layout Thrashing Prevention**: Throttles the navigation bar scroll state checks by wrapping state updates inside `window.requestAnimationFrame`.
+* **Tree-Shaking Icons**: Standardizes on individual icon exports from `lucide-react`, ensuring only active SVGs are bundled into the final build.
+
+---
+
+## Deployment
+
+The application is fully configured for deployment on the [Vercel](https://vercel.com) cloud platform.
+
+### Step-by-Step Vercel Deployment
+
+1. **Push your code**: Ensure all changes are committed and pushed to a remote GitHub, GitLab, or Bitbucket repository.
+2. **Connect to Vercel**:
+   * Navigate to the [Vercel Dashboard](https://vercel.com/dashboard) and click **Add New > Project**.
+   * Import your portfolio repository from your Git provider.
+3. **Configure Build Settings**:
+   * Vercel will automatically detect the **Next.js** framework preset. Keep default settings:
+     * **Build Command**: `next build` (or overridden automatically to use `pnpm build`)
+     * **Output Directory**: `.next`
+     * **Install Command**: `pnpm install`
+4. **Deploy**: Click **Deploy**. Vercel will build the Next.js project and serve it from an edge network.
+5. **Set up Custom Domains (Optional)**:
+   * Once built, navigate to project settings under the **Domains** tab to link your custom domain (e.g., `parvpatel.dev`).
+
+---
+
+## License
+
+This project is built and intended as a personal portfolio website. Code layout and structural configurations are open to community review and educational reference. For personal redistribution, adaptation, or templates, please ensure references to the original work are preserved.
