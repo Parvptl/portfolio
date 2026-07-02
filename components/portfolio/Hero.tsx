@@ -78,7 +78,7 @@ export default function Hero() {
             <span className="absolute inset-0 bg-primary/80 -z-10 group-hover:scale-105 transition-transform duration-300" />
           </a>
           <a
-            href="https://github.com/Parvptl/portfolio/Parv_Patel.pdf"
+            href="https://github.com/Parvptl/portfolio/blob/main/Parv_Patel.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group px-7 py-3 border border-primary/20 rounded-lg font-semibold hover:bg-primary/5 hover:border-primary/50 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background flex items-center gap-2"
