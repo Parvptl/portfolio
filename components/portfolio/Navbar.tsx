@@ -113,9 +113,8 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="https://github.com/Parvptl/portfolio/blob/main/Parv_Patel.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/Parv_Patel.pdf"
+            download="Parv_Patel.pdf"
             className="text-sm transition-colors duration-200 text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-md px-3 py-2 font-medium"
             aria-label="Download Resume PDF"
           >
